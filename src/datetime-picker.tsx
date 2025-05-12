@@ -561,12 +561,13 @@ const DateTimePicker = (
   const onChangeMonth = useCallback(
     (value: number) => {
       const newDate = dayjs(stateRef.current.currentDate).add(value, 'month');
+      onSelectMonth(newDate.month());
       dispatch({
         type: CalendarActionKind.CHANGE_CURRENT_DATE,
         payload: dayjs(newDate),
       });
     },
-    [stateRef, dispatch]
+    [stateRef, dispatch, onSelectMonth]
   );
 
   const onChangeYear = useCallback(
